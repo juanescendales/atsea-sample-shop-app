@@ -64,3 +64,6 @@ Thumbs.db
 # Secrets folders #
 ###################
 prodsecrets
+
+# Editor Config #
+.editorconfig

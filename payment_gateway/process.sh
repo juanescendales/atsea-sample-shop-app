@@ -1,5 +1,5 @@
 #!/bin/sh
-
+echo "Hello World"
 while true
 do
 	case "$(cat /run/secrets/payment_token)" in

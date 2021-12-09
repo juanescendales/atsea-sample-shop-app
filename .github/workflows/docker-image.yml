@@ -13,39 +13,41 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Set commit SHA
+      id: vars
+      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+    - name: Check commit SHA
+      run: echo ${{ steps.vars.outputs.sha_short }}
+      
     - name: Build and push app
       id: docker_build_app
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: juanescendales/atsea_app:latest,juanescendales/atsea_app:${{ github.sha }}
+        tags: juanescendales/atsea_app:latest,juanescendales/atsea_app:${{ steps.vars.outputs.sha_short }}
         context: app
-        secrets: |
-          GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+          
     - name: Build and push database
       id: docker_build_database
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: juanescendales/atsea_db:latest,juanescendales/atsea_db:${{ github.sha }}
+        tags: juanescendales/atsea_db:latest,juanescendales/atsea_db:${{ steps.vars.outputs.sha_short }}
         context: database
-        secrets: |
-          GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+        
     - name: Build and push reverse proxy
       id: docker_build_reverse_proxy
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: juanescendales/atsea_reverse_proxy:latest,juanescendales/atsea_reverse_proxy:${{ github.sha }}
+        tags: juanescendales/atsea_reverse_proxy:latest,juanescendales/atsea_reverse_proxy:${{ steps.vars.outputs.sha_short }}
         context: reverse_proxy
-        secrets: |
-          GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+        
     - name: Build and push payment gateway
       id: docker_build_payment_gateway
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: juanescendales/atsea_payment_gateway:latest,juanescendales/atsea_payment_gateway:${{ github.sha }}
+        tags: juanescendales/atsea_payment_gateway:latest,juanescendales/atsea_payment_gateway:${{ steps.vars.outputs.sha_short }}
         context: payment_gateway
-        secrets: |
-          GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}

@@ -81,7 +81,7 @@ public class UnitTest {
 	public void whenCustomerUserNameIsProvided_theReturnedNameIsCorrect() {	
 		Mockito.when(mockCustomerServiceImpl.findByUserName("arthurd")).thenReturn(returnCustomer);
 		String testName = returnCustomer.getName();
-		Assert.assertEquals("Arthur Den", testName);
+		Assert.assertEquals("Arthur Dent", testName);
 	}
 	
 	// Test ProductService implementation

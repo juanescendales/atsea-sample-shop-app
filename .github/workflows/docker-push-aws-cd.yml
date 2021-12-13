@@ -103,5 +103,5 @@ jobs:
             if ! [[ -d "./certs" ]]; then mkdir certs; fi
             echo ${{ secrets.POSTGRES_PASSWORD }} > devsecrets/postgres_password
             echo ${{ secrets.PAYMENT_TOKEN }} > devsecrets/payment_token
-            echo ${{ secrets.DOMAIN_CRT }} > certs/domain.crt
-            echo ${{ secrets.DOMAIN_KEY }} > certs/domain.key
+            echo "${{ secrets.DOMAIN_CRT }}" > certs/domain.crt
+            echo "${{ secrets.DOMAIN_KEY }}" > certs/domain.key

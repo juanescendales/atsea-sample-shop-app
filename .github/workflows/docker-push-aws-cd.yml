@@ -100,7 +100,7 @@ jobs:
           timeout: 60s
           script: | 
             if ! [[ -d "./devsecrets" ]]; then mkdir devsecrets; fi
-            if ! [[ -d "./certs" ]]; then mkdir devsecrets; fi
+            if ! [[ -d "./certs" ]]; then mkdir certs; fi
             echo ${{ secrets.POSTGRES_PASSWORD }} > devsecrets/postgres_password
             echo ${{ secrets.PAYMENT_TOKEN }} > devsecrets/payment_token
             echo ${{ secrets.DOMAIN_CRT }} > certs/domain.crt

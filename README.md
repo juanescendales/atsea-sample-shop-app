@@ -1,3 +1,7 @@
+[![CI - Docker Build and Push](https://github.com/juanescendales/atsea-sample-shop-app/actions/workflows/docker-image.yml/badge.svg?branch=master&event=push)](https://github.com/juanescendales/atsea-sample-shop-app/actions/workflows/docker-image.yml)
+
+
+
 ![](atsea_store.png)
 #  AtSea Shop Demonstration Application
 

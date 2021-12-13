@@ -3,8 +3,6 @@ version: "3.3"
 services:
   reverse_proxy:
     image: juanescendales/atsea_reverse_proxy
-    networks:
-      - front-tier
     secrets:
       - revprox_cert
       - revprox_key

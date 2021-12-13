@@ -114,4 +114,5 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           timeout: 60s
           script: | 
+            docker-compose pull
             docker stack deploy --compose-file docker-compose.yml atsea-app

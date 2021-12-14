@@ -83,6 +83,11 @@ jobs:
         run: |
           aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
 
+      - name: Sleep for 50s to make time to start machine
+      uses: juliangruber/sleep-action@v1
+      with:
+        time: 50s
+        
       - name: Docker compose to EC2
         uses: appleboy/scp-action@master
         with:

@@ -115,8 +115,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           timeout: 360s
           script: | 
-            sudo docker-compose down
-            sudo docker-compose pull
+            sudo docker swarm init
             sudo docker stack deploy --compose-file docker-compose.yml atsea-app
       - name: Trigger end to end tests
         run: |

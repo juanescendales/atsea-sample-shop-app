@@ -68,6 +68,7 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
+      
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -90,6 +91,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           source: "./docker-compose.yml"
           target: "/home/${{ secrets.EC2_USERNAME }}"
+          timeout: 360s
 
       - name: Setup enviroment of deploy
         uses: appleboy/ssh-action@master
@@ -97,7 +99,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          timeout: 60s
+          timeout: 360s
           script: | 
             if ! [[ -d "./devsecrets" ]]; then mkdir devsecrets; fi
             if ! [[ -d "./certs" ]]; then mkdir certs; fi
@@ -112,10 +114,10 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          timeout: 60s
+          timeout: 360s
           script: | 
-            docker-compose pull
-            docker stack deploy --compose-file docker-compose.yml atsea-app
+            sudo docker swarm init
+            sudo docker stack deploy --compose-file docker-compose.yml atsea-app
       - name: Trigger end to end tests
         run: |
           curl --request POST \

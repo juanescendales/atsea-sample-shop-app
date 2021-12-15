@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className='footer'>
       <div className='copyright'>
-        &copy;  2022
+        &copy;  2023
             </div>
     </div>
 
